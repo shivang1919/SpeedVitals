@@ -16,7 +16,7 @@ function App() {
         const response = await axios.get(`https://example-metrics.speedvitals.workers.dev/?metric=${selectedMetric}&device=${selectedDevice}`);
         if (response.data && response.data.timeseries && response.data.values) {
           const formattedData = response.data.timeseries.map((time, index) => ({
-            date: new Date(time * 1000).toLocaleDateString(),
+            timeseries: time,
             value: response.data.values[index]
           }));
           setGraphData(formattedData);
@@ -43,8 +43,8 @@ function App() {
             <Dropdown
               label="Metric"
               options={[
-                { value: 'lcp', label: 'Largest Contentful Paint' },
-                { value: 'cls', label: 'Cumulative Layout Shift' },
+                { value: 'lcp', label: 'LCP' },
+                { value: 'cls', label: 'CLS' },
               ]}
               value={selectedMetric}
               onChange={setSelectedMetric}

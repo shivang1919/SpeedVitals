@@ -26,6 +26,9 @@ function Graph({ data, metric, device }) {
         borderWidth: 1,
         textStyle: {
           color: '#333'
+        },
+        formatter: function(params) {
+          return `Time: ${params[0].name}<br/>Value: ${params[0].value}`;
         }
       },
       grid: {
@@ -36,7 +39,10 @@ function Graph({ data, metric, device }) {
       },
       xAxis: {
         type: 'category',
-        data: data.map((item) => item.date),
+        data: data.map((item) => item.timeseries),
+        name: 'Time',
+        nameLocation: 'middle',
+        nameGap: 30,
         axisLine: {
           lineStyle: {
             color: '#ddd'
@@ -48,7 +54,7 @@ function Graph({ data, metric, device }) {
       },
       yAxis: {
         type: 'value',
-        name: metric === 'lcp' ? 'Seconds' : 'CLS Score',
+        name: 'Value',
         nameTextStyle: {
           color: '#666'
         },
