@@ -1,0 +1,1 @@
+This project contains single page react website with apache echarts used for visualization of data.
